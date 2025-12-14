@@ -37,7 +37,7 @@ class DataIngestionConfig:
             constants.DATA_INGESTION_INGESTED_DIR,
             constants.TEST_FILE_NAME
         )
-
+        
         self.train_test_ratio = constants.DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO
         self.collection_name = constants.DATA_INGESTION_COLLECTION_NAME
         self.database_name = constants.DATA_INGESTION_DATABASE_NAME

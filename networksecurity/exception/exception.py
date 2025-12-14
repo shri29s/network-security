@@ -12,6 +12,7 @@ class NetworkSecurityException(Exception):
         _, _, self.traceback = sys.exc_info()
         self.lineno = self.traceback.tb_lineno
         self.filename = self.traceback.tb_frame.f_code.co_filename
+        logging.error(self)
 
     def __str__(self):
         return f"Exception [msg: {self.message}, line: {self.lineno}, file: {self.filename}]"

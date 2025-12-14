@@ -7,6 +7,7 @@ from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
 
 import pandas as pd
+from networksecurity import constants
 
 load_dotenv(".env")
 
@@ -46,7 +47,7 @@ class DataETL:
 
 if __name__ == "__main__":
     try:
-        etlPipe = DataETL("./Network_Data/phisingData.csv", os.getenv("DB_NAME"), os.getenv("PHISING_COLLECTION"))
+        etlPipe = DataETL("./Network_Data/phisingData.csv", constants.DATA_INGESTION_DATABASE_NAME, constants.DATA_INGESTION_COLLECTION_NAME)
         etlPipe.convert_json() # Extract
         etlPipe.push_mongo() # Load
     except Exception as e:
