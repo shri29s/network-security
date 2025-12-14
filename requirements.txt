@@ -8,3 +8,5 @@ matplotlib
 
 certifi
 pymongo
+
+pymongo[srv]
