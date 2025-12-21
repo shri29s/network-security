@@ -10,8 +10,13 @@ class NetworkSecurityException(Exception):
     def __init__(self, message):
         self.message = message
         _, _, self.traceback = sys.exc_info()
-        self.lineno = self.traceback.tb_lineno
-        self.filename = self.traceback.tb_frame.f_code.co_filename
+
+        if self.traceback:
+            self.lineno = self.traceback.tb_lineno
+            self.filename = self.traceback.tb_frame.f_code.co_filename
+        else:
+            self.lineno = "N/A"
+            self.filename = "N/A"
         logging.error(self)
 
     def __str__(self):
