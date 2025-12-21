@@ -9,6 +9,7 @@ import pickle
 
 def read_yaml(fileName: str) -> dict:
     try:
+        logging.info(f"Reading from yaml file: {fileName}")
         with open(fileName, 'r') as file:
             return yaml.safe_load(file)
     except Exception as e:
@@ -17,6 +18,7 @@ def read_yaml(fileName: str) -> dict:
 def write_yaml(fileName: str, content: object):
     try:
         os.makedirs(os.path.dirname(fileName), exist_ok=True)
+        logging.info(f"Writing to yaml file: {fileName}")
         with open(fileName, 'w') as file:
             yaml.dump(content, file)
     except Exception as e:
