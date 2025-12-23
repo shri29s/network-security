@@ -84,3 +84,37 @@ class DataValidationConfig:
             constants.DATA_VALIDATION_DRIFT_REPORT_DIR,
             constants.DATA_VALIDATION_DRIFT_REPORT_FILE_NAME
         )
+
+class DataTransformationConfig:
+    def __init__(self, training_config: TrainingPipelineConfig):
+        self.training_config = training_config
+
+        self.data_transformation_dir = os.path.join(
+            self.training_config.artifact_dir,
+            constants.DATA_TRANSFORMATION_DIR_NAME
+        )
+
+        self.data_transformation_transformed_data_dir = os.path.join(
+            self.data_transformation_dir,
+            constants.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR
+        )
+
+        self.data_transformation_transformed_object_dir = os.path.join(
+            self.data_transformation_dir,
+            constants.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR
+        )
+
+        self.data_transformation_train_file_path = os.path.join(
+            self.data_transformation_transformed_data_dir,
+            constants.TRAIN_FILE_NAME.replace(".csv", ".npy")
+        )
+
+        self.data_transformation_test_file_path = os.path.join(
+            self.data_transformation_transformed_data_dir,
+            constants.TEST_FILE_NAME.replace(".csv", ".npy")
+        )
+
+        self.data_transformation_transformed_object_file_path = os.path.join(
+            self.data_transformation_transformed_object_dir,
+            constants.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_FILE_NAME
+        )

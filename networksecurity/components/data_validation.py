@@ -9,7 +9,6 @@ from networksecurity.utils.utils import read_yaml, write_yaml
 
 from scipy.stats import ks_2samp # for making the drift report
 import pandas as pd
-import os
 
 class DataValidation:
     def __init__(self, config: DataValidationConfig, ing_artifact: DataIngestionArtifact):
