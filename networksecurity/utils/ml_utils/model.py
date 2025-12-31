@@ -29,7 +29,7 @@ def evaluate_models(X_train, y_train, models: dict, params: dict, cv_result_dir:
     mlflow.set_experiment("Model_selection_randomizedsearch")
 
     for model_name, model in models.items():
-        logging.info(f"Running grid search cv for model: {model_name}")
+        logging.info(f"Running randomized search cv for model: {model_name}")
         
         with mlflow.start_run(run_name=model_name):
             rscv = RandomizedSearchCV(model, params[model_name], scoring="f1", n_jobs=-1, verbose=1)
