@@ -3,9 +3,11 @@ from networksecurity.logging.logger import logging
 
 from sklearn.model_selection import RandomizedSearchCV
 
-import mlflow
 import pandas as pd
 import os
+import mlflow
+import dagshub
+dagshub.init(repo_owner='shri29s', repo_name='network-security', mlflow=True)
 
 class NetworkModel:
     def __init__(self, preprocessor, model):
