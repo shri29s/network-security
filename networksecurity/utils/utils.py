@@ -33,11 +33,31 @@ def save_numpy_array(fileName: str, array):
     except Exception as e:
         raise NetworkSecurityException(e)
     
+def load_numpy_array(fileName: str) -> object:
+    try:
+        logging.info(f"Loading numpy array on file: {fileName}")
+        if not os.path.exists(fileName):
+            raise NetworkSecurityException(f"File does not exist: {fileName}")
+        with open(fileName, "rb") as file:
+            return np.load(file)
+    except Exception as e:
+        raise NetworkSecurityException(e)
+    
 def save_object(fileName: str, object: object): 
     try:
         os.makedirs(os.path.dirname(fileName), exist_ok=True)
         logging.info(f"Pickling object to file: {fileName}")
         with open(fileName, "wb") as file:
             pickle.dump(object, file)
+    except Exception as e:
+        raise NetworkSecurityException(e)
+    
+def load_object(fileName: str) -> object:
+    try:
+        logging.info(f"Loading object on file: {fileName}")
+        if not os.path.exists(fileName):
+            raise NetworkSecurityException(f"File does not exist: {fileName}")
+        with open(fileName, "rb") as file:
+            return pickle.load(file=file)
     except Exception as e:
         raise NetworkSecurityException(e)

@@ -118,3 +118,26 @@ class DataTransformationConfig:
             self.data_transformation_transformed_object_dir,
             constants.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_FILE_NAME
         )
+
+class ModelTrainerConfig:
+    def __init__(self, training_config: TrainingPipelineConfig):
+        self.training_config = training_config
+
+        self.model_trainer_dir_path = os.path.join(
+            self.training_config.artifact_dir,
+            constants.MODEL_TRAINER_DIR
+        )
+
+        self.model_file_path = os.path.join(
+            self.model_trainer_dir_path,
+            constants.MODEL_TRAINER_TRAINED_MODEL_FILE_NAME
+        )
+
+        self.model_expected_accuracy = constants.MODEL_TRAINER_EXPECTED_ACCURACY
+        self.model_overfitting_underfitting_threshold = constants.MODEL_TRAINER_OVERFITING_UNDERFITING_THRESHOLD
+
+        self.cv_result_dir = os.path.join(
+            self.model_trainer_dir_path,
+            constants.MODEL_TRAINER_CV_RESULT_DIR_NAME
+        )
+        

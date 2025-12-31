@@ -12,3 +12,5 @@ pymongo
 pymongo[srv]
 
 pyaml
+
+mlflow

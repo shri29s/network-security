@@ -14,3 +14,8 @@ __pycache__/
 
 Artifacts/
 *.tmp
+
+mlruns/
+.ipynb_checkpoints/
+.vscode/
+mlflow.db
