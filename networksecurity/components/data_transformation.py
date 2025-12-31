@@ -9,6 +9,7 @@ from networksecurity.utils import utils
 
 import pandas as pd
 import numpy as np
+import os
 
 from sklearn.pipeline import Pipeline
 from sklearn.impute import KNNImputer
@@ -64,6 +65,9 @@ class DataTransformation:
             utils.save_numpy_array(self.data_transformation_config.data_transformation_train_file_path, transformed_train_df)
             utils.save_numpy_array(self.data_transformation_config.data_transformation_test_file_path, transformed_test_df)
             utils.save_object(self.data_transformation_config.data_transformation_transformed_object_file_path, preprocessor)
+
+            # Model pusher
+            utils.save_object(fileName=os.path.join(constants.FINAL_MODEL_DIR, "preprocessor.pkl"), object=preprocessor)
 
             logging.info("Data transformation completed successfully")
             return DataTransformationArtifact(

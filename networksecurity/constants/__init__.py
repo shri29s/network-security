@@ -13,6 +13,8 @@ TEST_FILE_NAME: str = "test.csv"
 SCHEMA_DIR: str = "data_schemas"
 SCHEMA_FILE_PATH: str = os.path.join(os.getcwd(), SCHEMA_DIR, "schema.yaml")
 
+FINAL_MODEL_DIR: str = os.path.join(os.getcwd(), "final_models")
+
 # Data Ingestion
 DATA_INGESTION_COLLECTION_NAME: str = "phisingData"
 DATA_INGESTION_DATABASE_NAME: str = "phisingData"

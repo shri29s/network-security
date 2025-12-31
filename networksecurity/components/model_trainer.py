@@ -18,6 +18,8 @@ from sklearn.ensemble import (
     RandomForestClassifier
 )
 
+import os
+
 import mlflow
 import dagshub
 dagshub.init(repo_owner='shri29s', repo_name='network-security', mlflow=True)
@@ -160,6 +162,9 @@ class ModelTrainer:
                 )
 
             save_object(self.config.model_file_path, best_model)
+
+            # Model pusher
+            save_object(fileName=os.path.join(constants.FINAL_MODEL_DIR, "model.pkl"), object=best_model)
 
             return ModelTrainerArtifact(
                 trained_model_file_path=self.config.model_file_path,
