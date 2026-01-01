@@ -18,3 +18,4 @@ dagshub
 
 fastapi
 uvicorn
+python-multipart

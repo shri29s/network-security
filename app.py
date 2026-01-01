@@ -1,17 +1,16 @@
 from networksecurity.pipeline.training_pipeline import TrainingPipeline
+from networksecurity.pipeline.batch_prediction import BatchPrediction
+from mongo.load_data import DataETL
+from networksecurity import constants
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile, Request
 from uvicorn import run as app_run
 from fastapi.responses import Response
 from starlette.responses import RedirectResponse
+from fastapi.templating import Jinja2Templates
 
-import pandas as pd
-
-from networksecurity.utils.utils import load_object
-from mongo.load_data import DataETL
-
-from networksecurity import constants
+templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
 origins = ["*"]
@@ -44,6 +43,16 @@ async def load_data_mongo():
         etlPipe.convert_json() # Extract
         etlPipe.push_mongo() # Load
         return Response("ETL pipeline successful", status_code=200)
+    except Exception as e:
+        return Response(e, status_code=500)
+    
+@app.post("/predict")
+async def batch_prediction(request: Request, file: UploadFile = File(...)):
+    try:
+        batchPrediction = BatchPrediction()
+        df = batchPrediction.batch_prediction(file=file.file)
+        table_html = df.to_html()
+        return templates.TemplateResponse(request=request, name="table.html", context={"table": table_html})
     except Exception as e:
         return Response(e, status_code=500)
     
