@@ -41,3 +41,6 @@ timeout: "1200s"
 
 images:
   - "us-central1-docker.pkg.dev/$PROJECT_ID/networksecurity-ml/networksecurity-ml-image:$SHORT_SHA"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
