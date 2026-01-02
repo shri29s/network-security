@@ -13,9 +13,12 @@ __pycache__/
 .DS_Store
 
 Artifacts/
+final_models/
 *.tmp
 
 mlruns/
 .ipynb_checkpoints/
 .vscode/
 mlflow.db
+
+gcp-secret/

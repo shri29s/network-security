@@ -9,7 +9,7 @@ from networksecurity.logging.logger import logging
 import pandas as pd
 from networksecurity import constants
 
-load_dotenv(".env")
+load_dotenv()
 
 class DataETL:
     fileName = None

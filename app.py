@@ -9,6 +9,7 @@ from uvicorn import run as app_run
 from fastapi.responses import Response
 from starlette.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
+from fastapi import HTTPException
 
 templates = Jinja2Templates(directory="templates")
 
@@ -34,7 +35,7 @@ async def train_route():
         modelTrainerArtifact = train_pipe.run_pipeline()
         return Response(f"Training successful, model trainer artifact: {modelTrainerArtifact}", status_code=200)
     except Exception as e:
-        return Response(e, status_code=500)
+        raise HTTPException(status_code=500, detail=str(e))
     
 @app.get("/load_data")
 async def load_data_mongo():
@@ -44,7 +45,7 @@ async def load_data_mongo():
         etlPipe.push_mongo() # Load
         return Response("ETL pipeline successful", status_code=200)
     except Exception as e:
-        return Response(e, status_code=500)
+        raise HTTPException(status_code=500, detail=str(e))
     
 @app.post("/predict")
 async def batch_prediction(request: Request, file: UploadFile = File(...)):
@@ -54,7 +55,7 @@ async def batch_prediction(request: Request, file: UploadFile = File(...)):
         table_html = df.to_html()
         return templates.TemplateResponse(request=request, name="table.html", context={"table": table_html})
     except Exception as e:
-        return Response(e, status_code=500)
+        raise HTTPException(status_code=500, detail=str(e))
     
 if __name__=="__main__":
-    app_run(app, host="localhost", port=8000)
+    app_run(app, host="0.0.0.0", port=8080)
