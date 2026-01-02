@@ -34,7 +34,7 @@ steps:
       - "--max-instances"
       - "3"
       - "--set-secrets"
-      - "GOOGLE_APPLICATION_CREDENTIALS=sa-key:latest,DAGSHUB_TOKEN=dagshub-token:latest"
+      - "GOOGLE_APPLICATION_CREDENTIALS=sa-key:latest,DAGSHUB_TOKEN=dagshub_token:latest"
 
 # Timeout (optional)
 timeout: "1200s"
