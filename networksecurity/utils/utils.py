@@ -7,6 +7,26 @@ import pickle
 
 import numpy as np
 
+import os
+import dagshub
+from dagshub import auth
+
+def init_dagshub():
+    print("DAGSHUB TOKEN FOUND:", bool(os.getenv("DAGSHUB_TOKEN")))
+
+    token = os.getenv("DAGSHUB_TOKEN")
+    if not token:
+        raise RuntimeError("DAGSHUB_TOKEN not set")
+
+    auth.add_app_token(token)
+
+    dagshub.init(
+        repo_owner="shri29s",
+        repo_name="network-security",
+        mlflow=True,
+    )
+
+
 def read_yaml(fileName: str) -> dict:
     try:
         logging.info(f"Reading from yaml file: {fileName}")

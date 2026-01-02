@@ -2,17 +2,21 @@ from networksecurity.pipeline.training_pipeline import TrainingPipeline
 from networksecurity.pipeline.batch_prediction import BatchPrediction
 from mongo.load_data import DataETL
 from networksecurity import constants
+from networksecurity.utils.utils import init_dagshub
+from networksecurity.logging.logger import logging
 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile, Request
 from uvicorn import run as app_run
 from fastapi.responses import Response
-from starlette.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi import HTTPException
 from fastapi.staticfiles import StaticFiles
 
 import os
+
+logging.info("Starting the application....")
+init_dagshub()
 
 app = FastAPI()
 origins = ["*"]

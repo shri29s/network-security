@@ -8,7 +8,6 @@ from networksecurity.logging.logger import logging
 from networksecurity.exception.exception import NetworkSecurityException
 
 from networksecurity.utils import gcp_storage
-
 from networksecurity import constants
 
 class TrainingPipeline:

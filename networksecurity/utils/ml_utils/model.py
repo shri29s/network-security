@@ -6,8 +6,6 @@ from sklearn.model_selection import RandomizedSearchCV
 import pandas as pd
 import os
 import mlflow
-import dagshub
-dagshub.init(repo_owner='shri29s', repo_name='network-security', mlflow=True)
 
 class NetworkModel:
     def __init__(self, preprocessor, model):
