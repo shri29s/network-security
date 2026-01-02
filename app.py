@@ -12,6 +12,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi import HTTPException
 from fastapi.staticfiles import StaticFiles
 
+import os
+
 app = FastAPI()
 origins = ["*"]
 
@@ -60,4 +62,5 @@ async def batch_prediction(request: Request, file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
     
 if __name__=="__main__":
-    app_run(app, host="0.0.0.0", port=8080)
+    port = os.getenv("PORT", 8080)
+    app_run(app, host="0.0.0.0", port=port)
