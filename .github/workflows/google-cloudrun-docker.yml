@@ -37,6 +37,11 @@ jobs:
         run: |
           gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
 
+      - name: Test OIDC auth
+        run: |
+          gcloud auth list
+          gcloud auth print-access-token
+
       - name: Build image
         run: |
           docker build -t \
