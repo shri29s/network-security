@@ -10,8 +10,7 @@ from fastapi.responses import Response
 from starlette.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi import HTTPException
-
-templates = Jinja2Templates(directory="templates")
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 origins = ["*"]
@@ -24,9 +23,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount("/static", StaticFiles(directory="static"), "static")
+templates = Jinja2Templates(directory="templates")
+
 @app.get("/")
-async def index():
-    return RedirectResponse(url="/docs")
+async def index(request: Request):
+    return templates.TemplateResponse(request=request, name="home.html")
 
 @app.get("/train")
 async def train_route():
