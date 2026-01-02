@@ -62,5 +62,5 @@ async def batch_prediction(request: Request, file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
     
 if __name__=="__main__":
-    port = os.getenv("PORT", 8080)
+    port = int(os.getenv("PORT", 8080))
     app_run(app, host="0.0.0.0", port=port)
